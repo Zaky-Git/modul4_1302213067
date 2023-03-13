@@ -123,10 +123,12 @@ class main
                 break;
             }
 
-            PosisiKarakterGame start = new PosisiKarakterGame();
 
-            start.startState();
         }
+
+        PosisiKarakterGame start = new PosisiKarakterGame();
+
+        start.startState();
 
 
     }
