@@ -21,6 +21,85 @@ class KodeBuah
     }
 }
 
+class PosisiKarakterGame { 
+
+        enum posisiState{
+        Jongkok,
+        Berdiri,
+        Terbang,
+        Tengkurap}
+        public void startState()
+    {
+        posisiState state = posisiState.Berdiri;
+        string[] stringPosisi = { "Jongkok", "Berdiri", "Terbang","Tengkurap" };
+        while (true)
+        {
+            Console.WriteLine("State sekarang : " + stringPosisi[(int)state]);
+            Console.Write("Masukkan Tombol : ");
+            string tombol = Console.ReadLine();
+            switch (state)
+            {
+                case posisiState.Berdiri:
+                    if (tombol == "W")
+                    {
+                        state = posisiState.Terbang;
+                    } else if (tombol == "S")
+                    {
+                        state = posisiState.Jongkok;
+                    } else
+                    {
+                        state = posisiState.Berdiri;
+                    }
+                    break;
+                case posisiState.Terbang:
+                    if (tombol == "S")
+                    {
+                        Console.WriteLine("posisi standby");
+                        state = posisiState.Berdiri;
+                    } else if (tombol == "X")
+                    {
+                        state = posisiState.Jongkok;
+                    } else
+                    {
+                        state = posisiState.Terbang;
+                    }
+                    break;
+                case posisiState.Jongkok:
+                    if (tombol == "S")
+                    {
+                        Console.WriteLine("posisi istirahat");
+                        state = posisiState.Tengkurap;
+                    } else if (tombol == "W")
+                    {
+                        Console.WriteLine("posisi standby");
+                        state = posisiState.Berdiri;
+                    } else
+                    {
+                        state = posisiState.Jongkok;
+                    }
+                    break;
+                case posisiState.Tengkurap:
+                {
+                    if (tombol == "W")
+                    {
+                        state = posisiState.Jongkok;
+                    } else
+                    {
+                        Console.WriteLine("posisi istirahat");
+                        state = posisiState.Tengkurap;
+                    }
+                    break;
+                }
+
+            }
+
+        }
+    }
+
+
+
+}
+
 class main
 {
     static void Main(string[] args)
@@ -33,7 +112,7 @@ class main
         while (true)
         {
 
-            Console.WriteLine("Masukkan Nama Buah : ");
+            Console.Write("Masukkan Nama Buah : ");
             string input = Console.ReadLine();
 
             Console.WriteLine("Kode Buah : " + kode.getKodeBuah_1302213067(input));
@@ -43,6 +122,10 @@ class main
             {
                 break;
             }
+
+            PosisiKarakterGame start = new PosisiKarakterGame();
+
+            start.startState();
         }
 
 
